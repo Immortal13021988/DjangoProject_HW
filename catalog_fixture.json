@@ -1,0 +1,70 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+        "name": "Овощ",
+        "description": "Очень полезный продукт"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+        "name": "Фрукт",
+        "description": "Очень вкусный продукт"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Морковь",
+        "description": "Очень вкусный овощ",
+        "photo": "",
+        "category": 1,
+        "price": 100.0,
+        "created_at": "2025-11-22T22:48:32.874Z",
+        "updated_at": "2025-11-22T23:02:47.179Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Помидор",
+        "description": "Очень вкусный овощ",
+        "photo": "",
+        "category": 1,
+        "price": 150.0,
+        "created_at": "2025-11-22T22:48:56.942Z",
+        "updated_at": "2025-11-22T23:02:58.869Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Лимон",
+        "description": "Кислый фрукт",
+        "photo": "",
+        "category": 2,
+        "price": 220.0,
+        "created_at": "2025-11-22T22:49:18.117Z",
+        "updated_at": "2025-11-22T23:02:09.232Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+        "name": "Мандарин",
+        "description": "Клёвый фрукт",
+        "photo": "",
+        "category": 2,
+        "price": 500.0,
+        "created_at": "2025-11-22T22:49:29.618Z",
+        "updated_at": "2025-11-22T23:12:01.252Z"
+    }
+}
+]
