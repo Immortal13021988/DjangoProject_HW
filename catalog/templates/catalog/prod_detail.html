@@ -1,0 +1,26 @@
+{% extends 'catalog/home.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    <div class="col-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h3 class="my-0 font-weight-normal">{{ prod.name|upper }}</h3>
+            </div>
+            <img src="{{ prod.photo | media_filter }}">
+            <div class="card-body">
+
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                    <li>Категория: {{ prod.category }}</li>
+                    <li>{{ prod.description }}</li>
+
+                    <li>Дата добавления: {{ prod.created_at |date:"d M Y - H:m"}}</li>
+                    <li>Дата изменения: {{ prod.updated_at | date:"d M Y - H:m" }}</li>
+                </ul>
+                <h4 class="card-title pricing-card-title">{{ prod.price }} р</h4>
+                <a class="btn btn-primary" href="{% url 'catalog:prod_list'%}" role="button">Назад</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
