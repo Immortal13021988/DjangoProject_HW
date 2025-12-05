@@ -2,7 +2,7 @@
 {% load my_tags %}
 {% block content %}
 <div class="row text-center">
-    {% for prod in prods %}
+    {% for prod in object_list %}
     <div class="col-3">
         <div class="card mb-4 box-shadow">
             <div class="card-header">
@@ -15,8 +15,14 @@
                     <li>{{ prod.description|truncatechars:100 }}</li>
                 </ul>
                 <h4 class="card-title pricing-card-title">{{ prod.price }} р</h4>
-                <a class="btn btn-primary" href="{% url 'catalog:prod_detail' prod.pk %}" role="button">Посмотреть</a>
-
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-primary btn-sm" href="{% url 'catalog:prod_detail' prod.pk %}"
+                       role="button">Посмотреть</a>
+                    <a class="btn btn-warning btn-sm" href="{% url 'catalog:prod_update' prod.pk %}"
+                       role="button">Редактировать</a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'catalog:prod_delete' prod.pk %}"
+                       role="button">Удалить</a>
+                </div>
             </div>
         </div>
     </div>
