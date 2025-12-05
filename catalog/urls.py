@@ -7,7 +7,7 @@ from .views import ProductListView, ProductDetailView, ContactTemplateView, Prod
 app_name = CatalogConfig.name
 
 urlpatterns = [
-    path("", ProductListView.as_view(), name="prod_list"),
+    path("product/", ProductListView.as_view(), name="prod_list"),
     path("contacts/", ContactTemplateView.as_view(extra_context={"header": "О сайте"}), name="contacts"),
     path("product/<int:pk>", ProductDetailView.as_view(), name="prod_detail"),
     path("product/create", ProductCreateView.as_view(), name="prod_create"),
