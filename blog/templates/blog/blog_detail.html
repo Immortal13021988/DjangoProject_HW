@@ -1,0 +1,39 @@
+{% extends 'blog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    <div class="col-4">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h3 class="my-0 font-weight-normal">Заголовок: {{ object.title|upper }}</h3>
+            </div>
+            <img src="{{ object.photo | media_filter }}">
+            <div class="card-body">
+
+                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+
+                    <li>{{ object.content }}</li>
+
+                    <li>Дата добавления: {{ object.created_at |date:"d M Y - H:m"}}</li>
+                    <li>Дата изменения: {{ object.updated_at | date:"d M Y - H:m" }}</li>
+                    <li>Просмотров: {{ object.views_counter  }}</li>
+                </ul>
+                <h5 class="card-title pricing-card-title"> Статус:
+                    {% if object.is_published %}
+                    опубликовано
+                    {% else %}
+                    черновик
+                    {% endif %}
+                </h5>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a class="btn btn-primary" href="{% url 'blog:blog_list'%}" role="button">Вернуться</a>
+                    <a class="btn btn-warning " href="{% url 'blog:blog_update' object.pk %}"
+                       role="button">Редактировать</a>
+                    <a class="btn btn-danger " href="{% url 'blog:blog_delete' object.pk %}"
+                       role="button">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
