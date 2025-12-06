@@ -1,0 +1,41 @@
+[
+{
+    "model": "blog.blog",
+    "pk": 1,
+    "fields": {
+        "title": "Test",
+        "content": "Lots of letters 1",
+        "photo": "blog/photo/test-stamp-png-768x512.png",
+        "created_at": "2025-12-06T00:16:52.624Z",
+        "updated_at": "2025-12-06T01:11:04.552Z",
+        "is_published": true,
+        "views_counter": 4
+    }
+},
+{
+    "model": "blog.blog",
+    "pk": 2,
+    "fields": {
+        "title": "Test 2",
+        "content": "Lots of letters.",
+        "photo": "blog/photo/unnamed.png",
+        "created_at": "2025-12-06T00:25:36.113Z",
+        "updated_at": "2025-12-06T01:06:04.135Z",
+        "is_published": true,
+        "views_counter": 0
+    }
+},
+{
+    "model": "blog.blog",
+    "pk": 3,
+    "fields": {
+        "title": "Тест 3",
+        "content": "Много буковок, как будто важных.",
+        "photo": "blog/photo/screen-2.jpg",
+        "created_at": "2025-12-06T00:39:00.937Z",
+        "updated_at": "2025-12-06T00:57:31.461Z",
+        "is_published": false,
+        "views_counter": 1
+    }
+}
+]
