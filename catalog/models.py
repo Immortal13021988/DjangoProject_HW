@@ -3,16 +3,18 @@ from django.db import models
 
 class Product(models.Model):
     name = models.CharField(
-        max_length=150, verbose_name="Наименование", help_text="Введите наименование"
+        max_length=150, verbose_name="Наименование",
+        # help_text="Введите наименование"
     )
     description = models.TextField(
-        verbose_name="Описание", help_text="Заполните описание"
+        verbose_name="Описание",
+        # help_text="Заполните описание"
     )
     photo = models.ImageField(
         upload_to="catalog/photo",
         blank=True,
         null=True,
-        help_text="Загрузите фото",
+        # help_text="Загрузите фото",
         # blank разрешает быть пустым на странице, null в базе данных
     )
     category = models.ForeignKey(  # связывает две таблицы через название категории
@@ -21,11 +23,12 @@ class Product(models.Model):
         blank=True,
         null=True,
         verbose_name="Категория",
-        help_text="Выберите категорию",
+        # help_text="Выберите категорию",
         related_name="products",
     )
     price = models.FloatField(
-        blank=True, null=True, verbose_name="Цена", help_text="Введите цену"
+        blank=True, null=True, verbose_name="Цена",
+        # help_text="Введите цену"
     )
     created_at = models.DateTimeField(
         auto_now_add=True
