@@ -2,7 +2,10 @@ from django.db import models
 
 
 class Blog(models.Model):
-    STATUS_CHOICES = ((' draft', 'Черновик'), (' published', 'Опубликовано'),)
+    STATUS_CHOICES = (
+        (" draft", "Черновик"),
+        (" published", "Опубликовано"),
+    )
     title = models.CharField(
         max_length=150, verbose_name="Заголовок", help_text="Введите заголовок"
     )
@@ -14,7 +17,6 @@ class Blog(models.Model):
         blank=True,
         null=True,
         verbose_name="Превью",
-
         # blank разрешает быть пустым на странице, null в базе данных
     )
     created_at = models.DateTimeField(
@@ -23,13 +25,11 @@ class Blog(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )  # меняет дату каждый раз при изменении
-    is_published = models.BooleanField(
-        default=False
-    )
+    is_published = models.BooleanField(default=False)
     views_counter = models.PositiveIntegerField(
         verbose_name="Количество просмотров",
         help_text="Укажите количество просмотров",
-        default=0
+        default=0,
     )
 
     def __str__(self):

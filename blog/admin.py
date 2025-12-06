@@ -6,5 +6,7 @@ from .models import Blog
 class BlogAdmin(admin.ModelAdmin):
     list_display = ("id", "title", "content", "photo", "is_published", "views_counter")
     list_filter = ("title",)
-    search_fields = ("title", "content",)
-
+    search_fields = (
+        "title",
+        "content",
+    )

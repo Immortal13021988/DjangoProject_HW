@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from catalog.models import Product
+
 # Create your views here.
 
 
@@ -17,8 +18,10 @@ class ProductListView(ListView):
 #     context = {"prods": prods}
 #     return render(request, "catalog/prod_list.html", context)
 
+
 class ProductDetailView(DetailView):
     model = Product
+
 
 # def prod_detail(request, pk):
 #     prod = get_object_or_404(Product, pk=pk)
@@ -54,6 +57,7 @@ class ContactTemplateView(TemplateView):
     #     def form_valid(self, form):
     #         messages.success(self.request, "Форма успешно отправлена!")
     #         return super().form_valid(form)
+
 
 # def contacts(request):
 #     if request.method == "POST":
