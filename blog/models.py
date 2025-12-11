@@ -2,15 +2,14 @@ from django.db import models
 
 
 class Blog(models.Model):
-    STATUS_CHOICES = (
-        (" draft", "Черновик"),
-        (" published", "Опубликовано"),
-    )
+
     title = models.CharField(
-        max_length=150, verbose_name="Заголовок", help_text="Введите заголовок"
+        max_length=150, verbose_name="Заголовок",
+        # help_text="Введите заголовок"
     )
     content = models.TextField(
-        verbose_name="Содержимое", help_text="Заполните содержимое"
+        verbose_name="Статья",
+        # help_text="Заполните содержимое"
     )
     photo = models.ImageField(
         upload_to="blog/photo",
@@ -25,10 +24,10 @@ class Blog(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )  # меняет дату каждый раз при изменении
-    is_published = models.BooleanField(default=False)
+    is_published = models.BooleanField(verbose_name="Статус публикации", default=False)
     views_counter = models.PositiveIntegerField(
         verbose_name="Количество просмотров",
-        help_text="Укажите количество просмотров",
+        # help_text="Укажите количество просмотров",
         default=0,
     )
 
