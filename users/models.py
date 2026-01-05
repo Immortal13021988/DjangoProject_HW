@@ -13,8 +13,8 @@ class CustomUser(AbstractUser):
     )
     avatar = models.ImageField(
         upload_to='users/avatar/',
-        verbose_name="Номер телефона",
-        help_text="Введите номер телефона",
+        verbose_name="Аватар",
+        help_text="Выберите файл с фото",
         blank=True, null=True
     )
     country = models.CharField(
