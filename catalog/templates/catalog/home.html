@@ -15,7 +15,9 @@
 <div class="pricing-header px-3 py-3 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Витаминоз</h1>
     <p class="lead">Витаминоз - это отличный вариант для покупки овощей и фруктов</p>
+    {% if user.is_authenticated %}
     <a class="btn btn-primary" href="{% url 'catalog:prod_create' %}" role="button"> Добавить продукт</a>
+    {% endif %}
 </div>
 
     <div class="container">

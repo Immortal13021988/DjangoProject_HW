@@ -14,18 +14,28 @@
                     <u style="font-size:25px">Категория: {{ object.category }}</u>
                     <li style="text-align:justify">{{ object.description }}</li>
 
-                    <li>Дата создания: {{ object.created_at |date:"d M Y - H:m"}}</li>
-                    <li>Дата изменения: {{ object.updated_at | date:"d M Y - H:m" }}</li>
+<!--                    <li>Дата создания: {{ object.created_at |date:"d M Y - H:m"}}</li>-->
+<!--                    <li>Дата изменения: {{ object.updated_at | date:"d M Y - H:m" }}</li>-->
+                    {% if object.is_available == True %}
+                    <li>Создано: {{ object.created_at |date:"d M Y - H:m"}} ({{ object.owner }})</li>
+                    {% endif %}
+                    {% if object.is_published == True%}
+                    <li>Опубликовано: {{ object.updated_at | date:"d M Y - H:m" }}</li>
+                    {% endif %}
                 </ul>
                 <ul class="list-unstyled mt-3 mb-4 text-center m-3">
                     <u class="card-title pricing-card-title" style="font-size:25px">{{ object.price }} р</u>
                 </ul>
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a class="btn btn-primary" href="{% url 'catalog:prod_list'%}" role="button">Вернуться</a>
+                    {% if perms.catalog.can_unpublish_product or user == prod.owner %}
                     <a class="btn btn-warning " href="{% url 'catalog:prod_update' object.pk %}"
                        role="button">Редактировать</a>
+                    {% endif %}
+                    {% if perms.catalog.delete_product or user == prod.owner %}
                     <a class="btn btn-danger " href="{% url 'catalog:prod_delete' object.pk %}"
                        role="button">Удалить</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

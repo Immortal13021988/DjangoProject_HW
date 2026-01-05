@@ -1,5 +1,7 @@
 from django.db import models
 
+from users.models import CustomUser
+
 
 class Product(models.Model):
     name = models.CharField(
@@ -30,12 +32,17 @@ class Product(models.Model):
         blank=True, null=True, verbose_name="Цена",
         # help_text="Введите цену"
     )
+    is_available = models.BooleanField(default=True, blank=True, null=True,)
+    is_published = models.BooleanField(default=False, blank=True, null=True,)
+
     created_at = models.DateTimeField(
         auto_now_add=True
     )  # заполняет дату при добавлении и больше не меняет
     updated_at = models.DateTimeField(
         auto_now=True
     )  # меняет дату каждый раз при изменении
+
+    owner = models.ForeignKey(CustomUser, verbose_name="Владелец", help_text="Укажите владельца", blank=True, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -45,6 +52,9 @@ class Product(models.Model):
         verbose_name_plural = "продукты"
         ordering = [
             "name",
+        ]
+        permissions = [
+            ("can_unpublish_product", "Can unpublish product"),
         ]
 
 
