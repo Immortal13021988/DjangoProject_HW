@@ -10,7 +10,9 @@
                     </div>
                     <p class="card-text">Вы действительно хотите удалить "{{ object.name|lower }}" из списка? </p>
                     <div class="btn-group" role="group" aria-label="Basic example">
+                        {% if perms.catalog.delete_product or user == prod.owner %}
                         <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        {% endif %}
                         <a class="btn btn-primary btn-sm" href="{% url 'catalog:prod_list'%}" role="button">Отменить</a>
                     </div>
                 </div>

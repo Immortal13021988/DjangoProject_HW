@@ -11,7 +11,7 @@ STOP_WORDS = ["казино", "криптовалюта", "крипта", "би�
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ("name", "description", "photo", "category", "price")
+        fields = ("name", "description", "photo", "category", "price",)
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
@@ -56,6 +56,70 @@ class ProductForm(forms.ModelForm):
     #             self.add_error("name", f"Название не может содержать слово: {word.upper()}")
     #         elif name and description and word in description.lower():
     #             self.add_error("description", f"Название не может содержать слово: {word.upper()}")
+
+    def clean_name(self):
+        name = self.cleaned_data.get("name")
+        for word in STOP_WORDS:
+            if name and word in name.lower():
+                self.add_error("name", f"Название не может содержать слово: {word.upper()}")
+        return name
+
+    def clean_description(self):
+        description = self.cleaned_data.get("description")
+        for word in STOP_WORDS:
+            if description and word in description.lower():
+                self.add_error("description", f"Название не может содержать слово: {word.upper()}")
+        return description
+
+
+class ProductModeratorForm(forms.ModelForm):
+    class Meta:
+        model = Product
+
+        fields = ("is_published",)
+
+    def __init__(self, *args, **kwargs):
+        super(ProductModeratorForm, self).__init__(*args, **kwargs)
+
+        for fild_name, fild in self.fields.items():  # этот вариант, что бы побыстрому сделать нормальночитаемые формы
+            if isinstance(fild, BooleanField):
+                fild.widget.attrs["class"] = "form-check-input"
+            else:
+                fild.widget.attrs["class"] = "form-control"
+
+        self.fields["is_published"].widget.attrs.update({'class': 'custom-checkbox-class'})
+
+
+class ProductOwnerModeratorForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ("name", "description", "photo", "category", "price", "is_published",)
+
+    def __init__(self, *args, **kwargs):
+        super(ProductOwnerModeratorForm, self).__init__(*args, **kwargs)
+
+        for fild_name, fild in self.fields.items():  # этот вариант, что бы побыстрому сделать нормальночитаемые формы
+            if isinstance(fild, BooleanField):
+                fild.widget.attrs["class"] = "form-check-input"
+            else:
+                fild.widget.attrs["class"] = "form-control"
+
+        self.fields["name"].widget.attrs.update({
+            "placeholder": "Введите название"
+        })
+        self.fields["description"].widget.attrs.update({
+            "placeholder": "Введите описание"
+        })
+        self.fields["price"].widget.attrs.update({
+            "placeholder": "Введите цену"
+        })
+        self.fields["is_published"].widget.attrs.update({'class': 'custom-checkbox-class'})
+
+    def clean_price(self):
+        price = self.cleaned_data.get('price')
+        if price and price < 0:
+            raise ValidationError('Цена не может быть отрицательной. Введите другое значение.')
+        return price
 
     def clean_name(self):
         name = self.cleaned_data.get("name")

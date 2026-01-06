@@ -4,12 +4,12 @@
     "pk": 1,
     "fields": {
         "title": "Test",
-        "content": "Lots of letters 1",
+        "content": "Lots of letters 1 111",
         "photo": "blog/photo/test-stamp-png-768x512.png",
         "created_at": "2025-12-06T00:16:52.624Z",
-        "updated_at": "2025-12-06T01:11:04.552Z",
+        "updated_at": "2026-01-02T23:33:12.014Z",
         "is_published": true,
-        "views_counter": 4
+        "views_counter": 9
     }
 },
 {
@@ -17,12 +17,12 @@
     "pk": 2,
     "fields": {
         "title": "Test 2",
-        "content": "Lots of letters.",
+        "content": "Lots of letters. 123",
         "photo": "blog/photo/unnamed.png",
         "created_at": "2025-12-06T00:25:36.113Z",
-        "updated_at": "2025-12-06T01:06:04.135Z",
+        "updated_at": "2026-01-02T23:33:26.611Z",
         "is_published": true,
-        "views_counter": 0
+        "views_counter": 3
     }
 },
 {
@@ -33,9 +33,22 @@
         "content": "Много буковок, как будто важных.",
         "photo": "blog/photo/screen-2.jpg",
         "created_at": "2025-12-06T00:39:00.937Z",
-        "updated_at": "2025-12-06T00:57:31.461Z",
+        "updated_at": "2025-12-06T10:41:57.606Z",
         "is_published": false,
-        "views_counter": 1
+        "views_counter": 2
+    }
+},
+{
+    "model": "blog.blog",
+    "pk": 6,
+    "fields": {
+        "title": "Test",
+        "content": "Test",
+        "photo": "blog/photo/test-stamp-png-768x512_2TLvMbO.png",
+        "created_at": "2025-12-06T10:33:30.836Z",
+        "updated_at": "2025-12-28T00:20:30.505Z",
+        "is_published": true,
+        "views_counter": 3
     }
 }
 ]
