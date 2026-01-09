@@ -3,11 +3,12 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from catalog.views import CategoryListinMenu
 from .models import Blog
 from .forms import BlogForm
 
 
-class BlogListView(LoginRequiredMixin, ListView):
+class BlogListView(CategoryListinMenu, LoginRequiredMixin, ListView):
     model = Blog
 
     def get_queryset(self):
@@ -15,7 +16,7 @@ class BlogListView(LoginRequiredMixin, ListView):
         return queryset.filter(is_published=True)
 
 
-class BlogDetailView(LoginRequiredMixin, DetailView):
+class BlogDetailView(CategoryListinMenu, LoginRequiredMixin, DetailView):
     model = Blog
 
     def get_object(self, queryset=None):
@@ -25,13 +26,13 @@ class BlogDetailView(LoginRequiredMixin, DetailView):
         return self.object
 
 
-class BlogCreateView(LoginRequiredMixin, CreateView):
+class BlogCreateView(CategoryListinMenu, LoginRequiredMixin, CreateView):
     model = Blog
     form_class = BlogForm
     success_url = reverse_lazy("blog:blog_list")
 
 
-class BlogUpdateView(LoginRequiredMixin, UpdateView):
+class BlogUpdateView(CategoryListinMenu, LoginRequiredMixin, UpdateView):
     model = Blog
     form_class = BlogForm
     success_url = reverse_lazy("blog:blog_list")
@@ -40,6 +41,6 @@ class BlogUpdateView(LoginRequiredMixin, UpdateView):
         return reverse("blog:blog_detail", args=[self.kwargs.get("pk")])
 
 
-class BlogDeleteView(LoginRequiredMixin, DeleteView):
+class BlogDeleteView(CategoryListinMenu, LoginRequiredMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy("blog:blog_list")
