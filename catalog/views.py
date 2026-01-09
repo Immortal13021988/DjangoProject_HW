@@ -11,7 +11,7 @@ from .models import Product, Category
 from .services import get_product_list_from_cache, get_products_by_category
 
 
-class CategoryListinMenu(ListView):
+class CategoryListinMenu:
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -61,7 +61,7 @@ class ProductListView(CategoryListinMenu, ListView):
 #     return render(request, "catalog/prod_list.html", context)
 
 
-class ProductDetailView(LoginRequiredMixin, DetailView):
+class ProductDetailView(CategoryListinMenu, LoginRequiredMixin, DetailView):
     model = Product
 
 
@@ -71,7 +71,7 @@ class ProductDetailView(LoginRequiredMixin, DetailView):
 #     return render(request, "catalog/prod_detail.html", context)
 
 
-class ProductCreateView(LoginRequiredMixin, CreateView):
+class ProductCreateView(CategoryListinMenu, LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("catalog:prod_list")
@@ -84,7 +84,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(CategoryListinMenu, LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("catalog:prod_list")
@@ -101,7 +101,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         raise PermissionDenied
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(CategoryListinMenu, LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("catalog:prod_list")
 
@@ -118,7 +118,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         return redirect('catalog:product_list')
 
 
-class ContactTemplateView(LoginRequiredMixin, TemplateView):
+class ContactTemplateView(CategoryListinMenu, LoginRequiredMixin, TemplateView):
     template_name = "catalog/contacts.html"
 
     # from django.contrib import messages

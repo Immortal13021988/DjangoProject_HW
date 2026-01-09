@@ -4,12 +4,13 @@ from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
+from catalog.views import CategoryListinMenu
 from .forms import CustomUserCreationForm
 
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 
 
-class RegisterView(CreateView):
+class RegisterView(CategoryListinMenu, CreateView):
     template_name = 'users/register.html'
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('users:login')
