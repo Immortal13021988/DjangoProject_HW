@@ -3,11 +3,12 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from catalog.views import CategoryListinMenu
 from .models import Blog
 from .forms import BlogForm
 
 
-class BlogListView(LoginRequiredMixin, ListView):
+class BlogListView(CategoryListinMenu, LoginRequiredMixin, ListView):
     model = Blog
 
     def get_queryset(self):
